@@ -9,6 +9,8 @@ import 'package:personal_portfolio/views/home_screen.dart';
 import 'package:personal_portfolio/views/projects_screen.dart';
 import 'package:personal_portfolio/views/resume_screen.dart';
 import 'package:personal_portfolio/views/skills_screen.dart';
+import 'package:personal_portfolio/widgets/side_bar_cus.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -29,6 +31,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isWidth = width > 360;
     return PopScope(
       //Không cho pop
       canPop: false,
@@ -36,30 +40,62 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
       child: BlocBuilder<SelectedBottomNavCubit, int>(
         builder: (context, selectedIndex) {
           return Scaffold(
-            body: _screens[selectedIndex],
-            bottomNavigationBar: SalomonBottomBar(
-              backgroundColor: AppColors.nen,
-              /* 
+            // body: _screens[selectedIndex],
+            body: ResponsiveBreakpoints.of(context).isMobile
+                ? _screens[selectedIndex]
+                : Row(
+                    children: [
+                      SideBarCus(),
+                      Expanded(child: _screens[selectedIndex]),
+                    ],
+                  ),
+            bottomNavigationBar: ResponsiveBreakpoints.of(context).isMobile
+                ? SalomonBottomBar(
+                    backgroundColor: Colors.transparent,
+
+                    /* 
                 -  Sử dụng dạng bottom nav kiểu slamon
                 - 5 item: Home, Resume, Projects, Skills, Contact
                */
-              currentIndex: selectedIndex,
-              onTap: (index) {
-                //Cập nhật index của bottom nav khi người dùng chọn
-                context.read<SelectedBottomNavCubit>().selectTab(index);
-              },
-              items: [
-                _buildBottomNavItem(Icons.home, AppStrings.home, null),
-                _buildBottomNavItem(Icons.description, AppStrings.resume, null),
-                _buildBottomNavItem(Icons.work, AppStrings.projects, null),
-                _buildBottomNavItem(Icons.build, AppStrings.skills, null),
-                _buildBottomNavItem(
-                  Icons.contact_mail,
-                  AppStrings.contact,
-                  null,
-                ),
-              ],
-            ),
+                    currentIndex: selectedIndex,
+                    onTap: (index) {
+                      //Cập nhật index của bottom nav khi người dùng chọn
+                      context.read<SelectedBottomNavCubit>().selectTab(index);
+                    },
+                    items: [
+                      _buildBottomNavItem(
+                        isWidth,
+                        Icons.home,
+                        AppStrings.home,
+                        null,
+                      ),
+                      _buildBottomNavItem(
+                        isWidth,
+                        Icons.description,
+                        AppStrings.resume,
+                        null,
+                      ),
+                      _buildBottomNavItem(
+                        isWidth,
+                        Icons.work,
+                        AppStrings.projects,
+                        null,
+                      ),
+                      _buildBottomNavItem(
+                        isWidth,
+                        Icons.build,
+                        AppStrings.skills,
+                        null,
+                      ),
+                      _buildBottomNavItem(
+                        isWidth,
+                        Icons.contact_mail,
+                        AppStrings.contact,
+                        null,
+                      ),
+                    ],
+                  )
+                : null,
           );
         },
       ),
@@ -68,14 +104,18 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   //tạo item cho bottom nav
   SalomonBottomBarItem _buildBottomNavItem(
+    bool isWidth,
     IconData icon,
     String label,
     Color? color,
   ) {
     return SalomonBottomBarItem(
       unselectedColor: AppColors.chuPhu,
+      activeIcon: Icon(icon, color: AppColors.vangLuxury),
       icon: Icon(icon),
-      title: Text(label, style: AppTextStyles.bottomNavLabel),
+      title: isWidth
+          ? Text(label, style: AppTextStyles.bottomNavLabel)
+          : SizedBox(),
       selectedColor: color ?? AppColors.chuChinh,
     );
   }

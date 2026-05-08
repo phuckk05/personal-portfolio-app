@@ -48,6 +48,16 @@ dependencies:
 
   #state management
   flutter_bloc: ^9.1.1
+
+  #thêm thư viện svg
+  flutter_svg: ^2.2.0
+
+  #thêm thư viện responsive framework
+  responsive_framework: ^1.5.1
+
+
+  #thêm thư viện dùng sidebar
+  easy_sidemenu: ^0.6.1
  
 
 
@@ -79,3 +89,4 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/svgs/

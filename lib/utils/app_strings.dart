@@ -8,4 +8,7 @@ class AppStrings {
   static const String projects = "Projects";
   static const String skills = "Skills";
   static const String contact = "Contact";
+
+  //svg
+  static const String svgGithub = 'assets/svgs/github-original.svg';
 }
