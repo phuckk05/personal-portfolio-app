@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_portfolio/models/personal.dart';
-import 'package:personal_portfolio/models/progress_bar.dart';
-import 'package:personal_portfolio/utils/app_colors.dart';
+import 'package:personal_portfolio/utils/app_constants.dart';
 import 'package:personal_portfolio/utils/app_strings.dart';
-import 'package:personal_portfolio/utils/app_text_styles.dart';
+import 'package:personal_portfolio/widgets/app_bar_cus.dart';
 import 'package:personal_portfolio/widgets/progress_bar_cus.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -13,26 +12,20 @@ class SkillsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.nen,
-        title: Text(
-          AppStrings.skills,
-          style: AppTextStyles.bottomNavLabel.copyWith(
-            color: AppColors.chuChinh,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: AppStrings.home),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppConstants.spacingM,
+          vertical: AppConstants.spacingM,
+        ),
         child: SingleChildScrollView(
           child: SizedBox(
             width:
                 ResponsiveBreakpoints.of(context).isMobile ||
                     ResponsiveBreakpoints.of(context).isTablet
                 ? double.infinity
-                : MediaQuery.of(context).size.width * 0.4,
+                : MediaQuery.of(context).size.width *
+                      AppConstants.skillsDesktopWidthFactor,
             child: ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -46,7 +39,7 @@ class SkillsScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(height: 12);
+                return const SizedBox(height: AppConstants.spacingM);
               },
             ),
           ),

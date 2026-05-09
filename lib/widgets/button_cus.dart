@@ -35,26 +35,31 @@ class ButtonCus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height ?? 50,
-      width: width ?? double.infinity,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          disabledBackgroundColor: AppColors.chuPhu,
-          backgroundColor: backgroundColor ?? AppColors.chuChinh,
-          foregroundColor: textColor ?? AppColors.nen,
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        ),
-        child: isLoading == true
-            ? LoadingInternal(color: AppColors.nen, loading: isLoading)
-            : Text(
-                text,
-                style: AppTextStyles.bottomNavLabel.copyWith(
-                  color: textColor ?? AppColors.nen,
+    return Semantics(
+      label: 'Button: $text',
+      child: SizedBox(
+        height: height ?? 50,
+        width: width ?? double.infinity,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            disabledBackgroundColor: AppColors.chuPhu,
+            backgroundColor: backgroundColor ?? AppColors.chuChinh,
+            foregroundColor: textColor ?? AppColors.nen,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          child: isLoading == true
+              ? LoadingInternal(color: AppColors.nen, loading: isLoading)
+              : Text(
+                  text,
+                  style: AppTextStyles.bottomNavLabel.copyWith(
+                    color: textColor ?? AppColors.nen,
+                  ),
                 ),
-              ),
+        ),
       ),
     );
   }

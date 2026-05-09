@@ -46,4 +46,22 @@ class AppColors {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
+
+  static ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    scaffoldBackgroundColor: chuChinh,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: chuChinh,
+      foregroundColor: nen,
+    ),
+  );
+
+  static ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: nen,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: nen,
+      foregroundColor: chuChinh,
+    ),
+  );
 }

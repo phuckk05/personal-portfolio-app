@@ -42,7 +42,7 @@ class ProgressBarCus extends StatelessWidget {
           child: TextCus(
             text: title,
             textStyle: AppTextStyles.bottomNavLabel.copyWith(
-              color: AppColors.chuChinh,
+              color: Theme.of(context).appBarTheme.foregroundColor!,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -69,7 +69,7 @@ class ProgressBarCus extends StatelessWidget {
               TextCus(
                 text: '${(value * 100).toStringAsFixed(0)}%',
                 textStyle: AppTextStyles.bottomNavLabel.copyWith(
-                  color: AppColors.chuChinh,
+                  color: Theme.of(context).appBarTheme.foregroundColor!,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),

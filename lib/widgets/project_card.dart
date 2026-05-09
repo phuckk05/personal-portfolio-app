@@ -4,6 +4,7 @@ import 'package:personal_portfolio/models/project.dart';
 import 'package:personal_portfolio/utils/app_colors.dart';
 import 'package:personal_portfolio/utils/app_strings.dart';
 import 'package:personal_portfolio/utils/app_text_styles.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectCard extends StatelessWidget {
   final double cardWidth;
@@ -15,7 +16,15 @@ class ProjectCard extends StatelessWidget {
   });
 
   //hàm mở link github
-  void _openGithubLink() {}
+  Future<void> _openGithubLink(String url) async {
+    final Uri uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Không mở được link';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +66,19 @@ class ProjectCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        image: DecorationImage(
-          image: AssetImage(project.screenshots.first),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.asset(
+          project.screenshots.first,
+
           fit: BoxFit.cover,
+
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              color: Colors.grey.shade900,
+              child: const Icon(Icons.person, color: Colors.white),
+            );
+          },
         ),
       ),
     );
@@ -109,6 +126,7 @@ class ProjectCard extends StatelessWidget {
       style: TextButton.styleFrom(foregroundColor: AppColors.chuChinh),
       onPressed: () {
         //Mở link github
+        _openGithubLink(project.githubUrl!);
       },
       icon: SvgPicture.asset(
         AppStrings.svgGithub,

@@ -61,11 +61,15 @@ class TextFieldCus extends StatelessWidget {
           hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 12),
-            borderSide: BorderSide(color: AppColors.chuChinh),
+            borderSide: BorderSide(
+              color: Theme.of(context).appBarTheme.foregroundColor!,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 12),
-            borderSide: BorderSide(color: AppColors.chuChinh),
+            borderSide: BorderSide(
+              color: Theme.of(context).appBarTheme.foregroundColor!,
+            ),
           ),
           hintStyle: AppTextStyles.bottomNavLabel.copyWith(
             color:

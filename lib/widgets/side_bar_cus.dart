@@ -48,7 +48,11 @@ class _SideBarCusState extends State<SideBarCus> {
       child: Container(
         decoration: BoxDecoration(
           border: Border(
-            right: BorderSide(color: AppColors.chuChinh.withOpacity(0.2)),
+            right: BorderSide(
+              color: Theme.of(
+                context,
+              ).appBarTheme.foregroundColor!.withOpacity(0.2),
+            ),
           ),
         ),
         child: Column(
@@ -62,7 +66,7 @@ class _SideBarCusState extends State<SideBarCus> {
                     .toggleDisplayMode(),
                 icon: Icon(
                   CupertinoIcons.sidebar_left,
-                  color: AppColors.chuChinh,
+                  color: Theme.of(context).appBarTheme.foregroundColor,
                 ),
               ),
             ),
@@ -70,7 +74,9 @@ class _SideBarCusState extends State<SideBarCus> {
               builder: (context, state) {
                 return SideMenu(
                   style: SideMenuStyle(
-                    hoverColor: AppColors.chuChinh.withOpacity(0.15),
+                    hoverColor: Theme.of(
+                      context,
+                    ).appBarTheme.foregroundColor!.withOpacity(0.1),
 
                     displayMode: state,
                     selectedColor: AppColors.chuChinh,

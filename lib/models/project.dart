@@ -29,18 +29,12 @@ class ProjectMockData {
     return [
       Project(
         id: '1',
-        title: 'E-Commerce Mobile App',
+        title: 'Ứng dụng cá nhân hồ sơ',
         description:
-            'Ứng dụng mua sắm trực tuyến với tích hợp thanh toán, giỏ hàng, và quản lý đơn hàng. Hỗ trợ đa ngôn ngữ và theme tối/sáng.',
-        screenshots: ['assets/images/avatar.jpg'],
-        technologies: [
-          'Flutter',
-          'Bloc',
-          'Firebase',
-          'Stripe Payment',
-          'REST API',
-        ],
-        githubUrl: 'https://github.com/username/ecommerce-app',
+            'Ứng dụng hồ sơ cá nhân với Flutter, tích hợp Firebase cho authentication và Cloudinary để quản lý ảnh và các widget.',
+        screenshots: ['assets/images/widget-social.png'],
+        technologies: ['Flutter', 'Firebase', 'Authentication', 'Cloudinary'],
+        githubUrl: 'https://github.com/phuckk05/widgets-app',
         type: ProjectType.personal,
         startDate: DateTime(2023, 6, 1),
         endDate: DateTime(2023, 12, 15),
@@ -48,15 +42,19 @@ class ProjectMockData {
 
       Project(
         id: '2',
-        title: 'Task Management System',
+        title: 'Ứng dụng quản lý nhà hàng thông minh',
         description:
-            'Hệ thống quản lý công việc cho team với Kanban board, phân quyền user, và báo cáo tiến độ.',
-        screenshots: [
-          'assets/projects/task_1.png',
-          'assets/projects/task_2.png',
+            'Đã phát triển ứng dụng quản lý nhà hàng thông minh với Flutter, tích hợp Spring Boot cho backend, Render để triển khai, Supabase cho cơ sở dữ liệu, Cloudinary để quản lý ảnh và REST API để giao tiếp giữa frontend và backend.',
+        screenshots: ['assets/images/smart-dine-1.png'],
+        technologies: [
+          'Flutter',
+          'Spring boot',
+          'Render',
+          'Supabase',
+          'Cloudinary',
+          'REST API',
         ],
-        technologies: ['Flutter', 'GetX', 'Node.js', 'MongoDB', 'Socket.io'],
-        githubUrl: 'https://github.com/team/task-manager',
+        githubUrl: 'https://github.com/phuckk05/SmartDine_Frontend',
         type: ProjectType.team,
         startDate: DateTime(2024, 1, 10),
         endDate: null, // Đang làm
@@ -64,22 +62,12 @@ class ProjectMockData {
 
       Project(
         id: '3',
-        title: 'Fitness Tracker',
+        title: 'Tìm đồ thất lạc',
         description:
-            'App theo dõi sức khỏe với tích hợp sensors, charts, và AI recommendation cho workout plans.',
-        screenshots: [
-          'assets/projects/fitness_1.png',
-          'assets/projects/fitness_2.png',
-          'assets/projects/fitness_3.png',
-        ],
-        technologies: [
-          'Flutter',
-          'Provider',
-          'SQLite',
-          'Charts',
-          'Wearable API',
-        ],
-        githubUrl: 'https://github.com/username/fitness-tracker',
+            'App tìm kiếm đồ vật thất lạc với tích hợp bản đồ, và AI để hỗ trợ người dùng.',
+        screenshots: ['assets/images/finback-1.png'],
+        technologies: ['Kotlin', 'Osdroid map', 'Firebase', 'DeepLinking'],
+        githubUrl: 'https://github.com/phuckk05/FindBack',
         type: ProjectType.personal,
         startDate: DateTime(2023, 3, 1),
         endDate: DateTime(2023, 8, 20),

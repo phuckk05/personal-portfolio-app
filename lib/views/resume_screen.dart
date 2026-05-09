@@ -4,8 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:personal_portfolio/cubits/side_menu_display_mode_cubit.dart';
 import 'package:personal_portfolio/models/personal.dart';
 import 'package:personal_portfolio/utils/app_colors.dart';
+import 'package:personal_portfolio/utils/app_constants.dart';
 import 'package:personal_portfolio/utils/app_strings.dart';
 import 'package:personal_portfolio/utils/app_text_styles.dart';
+import 'package:personal_portfolio/widgets/app_bar_cus.dart';
 import 'package:personal_portfolio/widgets/avatar_cus.dart';
 import 'package:personal_portfolio/widgets/text_crad_cus.dart';
 import 'package:personal_portfolio/widgets/text_cus.dart';
@@ -15,32 +17,29 @@ class ResumeScreen extends StatelessWidget {
   ResumeScreen({super.key});
 
   final personal = Personal.mockPersonal;
-  final String tag = 'avatar';
+  final String tag = AppStrings.avatarTag;
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.nen,
-          title: Text(
-            AppStrings.resume,
-            style: AppTextStyles.bottomNavLabel.copyWith(
-              color: AppColors.chuChinh,
-              fontWeight: FontWeight.bold,
-              fontSize: 24,
-            ),
-          ),
-        ),
+        appBar: CustomAppBar(title: AppStrings.resume),
         //Sử dụng SingleChildScrollView để tránh lỗi khi nội dung quá dài và trường hợp user co thắt giao diện
         body: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppConstants.spacingM,
+              ),
               child: Column(
-                children: [SizedBox(height: 100), _buildInformation(context)],
+                children: [
+                  ResponsiveBreakpoints.of(context).isMobile
+                      ? SizedBox.shrink()
+                      : SizedBox(height: AppConstants.resumeTopSpacerDesktop),
+                  _buildInformation(context),
+                ],
               ),
             ),
           ),
@@ -49,83 +48,100 @@ class ResumeScreen extends StatelessWidget {
     );
   }
 
-  //build thông tin cá nhận
+  //build thông tin cá nhân
   Widget _buildInformation(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         TextCus(
-          text: 'Thông tin cá nhân',
-          textStyle: AppTextStyles.label.copyWith(color: AppColors.chuChinh),
+          text: AppStrings.resumePersonalInfoTitle,
+          textStyle: AppTextStyles.label.copyWith(
+            color: Theme.of(context).appBarTheme.foregroundColor,
+          ),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingM,
+            vertical: AppConstants.spacingLG,
+          ),
           child: SizedBox(
             width: ResponsiveBreakpoints.of(context).isMobile
                 ? double.infinity
                 : ResponsiveBreakpoints.of(context).isTablet
                 ? double.infinity
-                : MediaQuery.of(context).size.width * 0.4,
+                : MediaQuery.of(context).size.width *
+                      AppConstants.resumeDesktopWidthFactor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    TextCus(
-                      text: "Hi, I'm",
-                      textStyle: AppTextStyles.label.copyWith(
-                        color: AppColors.chuChinh,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextCus(
+                        text: AppStrings.resumeGreeting,
+                        textStyle: AppTextStyles.label.copyWith(
+                          color: Theme.of(context).appBarTheme.foregroundColor!,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppConstants.fontSizeL,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    TextCus(
-                      text: personal.resume.firstName,
-                      textStyle: AppTextStyles.label.copyWith(
-                        color: AppColors.chuChinh,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                      SizedBox(height: AppConstants.spacingSM),
+                      TextCus(
+                        text: personal.resume.firstName,
+                        textStyle: AppTextStyles.label.copyWith(
+                          color: AppColors.vangLuxury,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppConstants.fontSize2XL,
+                        ),
                       ),
-                    ),
-                    TextCus(
-                      text: personal.resume.lastName,
-                      textStyle: AppTextStyles.label.copyWith(
-                        color: AppColors.vangLuxury,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 32,
+                      TextCus(
+                        text: personal.resume.lastName,
+                        textStyle: AppTextStyles.label.copyWith(
+                          color: Theme.of(context).appBarTheme.foregroundColor!,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppConstants.fontSize2XL,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    TextCradCus(
-                      text: personal.resume.jobTitle,
-                      textStyle: AppTextStyles.bottomNavLabel.copyWith(
-                        color: AppColors.chuChinh,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                      SizedBox(height: AppConstants.spacingSM),
+                      TextCradCus(
+                        text: personal.resume.jobTitle,
+                        textStyle: AppTextStyles.bottomNavLabel.copyWith(
+                          color: Theme.of(context).appBarTheme.backgroundColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppConstants.fontSizeSM,
+                        ),
+                        backgroundColor: Theme.of(
+                          context,
+                        ).appBarTheme.foregroundColor!,
+                        borderColor: AppColors.vangLuxury,
                       ),
-                      backgroundColor: AppColors.nen2,
-                      borderColor: AppColors.vangLuxury,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                SizedBox(width: 12),
+                SizedBox(width: AppConstants.spacingM),
                 BlocBuilder<SideMenuDisplayModeCubit, SideMenuDisplayMode>(
                   builder: (context, state) {
                     return AvatarCus(
+                      semanticsLabel: AppStrings.avatarSemanticsLabel,
                       radius:
                           ResponsiveBreakpoints.of(context).isMobile ||
                               ResponsiveBreakpoints.of(context).isTablet
                           ? state == SideMenuDisplayMode.open
                                 ? ResponsiveBreakpoints.of(context).isMobile
-                                      ? MediaQuery.of(context).size.width * 0.15
-                                      : MediaQuery.of(context).size.width * 0.06
-                                : MediaQuery.of(context).size.width * 0.2
-                          : 100,
+                                      ? MediaQuery.of(context).size.width *
+                                            AppConstants
+                                                .resumeAvatarRadiusMobileOpenFactor
+                                      : MediaQuery.of(context).size.width *
+                                            AppConstants
+                                                .resumeAvatarRadiusTabletOpenFactor
+                                : MediaQuery.of(context).size.width *
+                                      AppConstants
+                                          .resumeAvatarRadiusClosedFactor
+                          : AppConstants.resumeAvatarRadiusDesktop,
                       imagePath: personal.avatarUrl,
                       tag: tag,
                     );
@@ -136,45 +152,53 @@ class ResumeScreen extends StatelessWidget {
           ),
         ),
         TextCus(
-          text: 'Mục tiêu nghề nghiệp',
-          textStyle: AppTextStyles.label.copyWith(color: AppColors.chuChinh),
+          text: AppStrings.resumeCareerGoalTitle,
+          textStyle: AppTextStyles.label.copyWith(
+            color: Theme.of(context).appBarTheme.foregroundColor!,
+          ),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: AppConstants.spacingM),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingM,
+          ),
           child: TextCus(
             text: personal.resume.careerGoal,
             textStyle: AppTextStyles.label.copyWith(
-              color: AppColors.chuPhu,
-              fontSize: 14,
-              height: 1.5,
+              color: Theme.of(context).appBarTheme.foregroundColor!,
+              fontSize: AppConstants.fontSizeSM,
+              height: AppConstants.resumeTextLineHeight,
               fontStyle: FontStyle.italic,
             ),
           ),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: AppConstants.spacingM),
         TextCus(
-          text: 'Học vấn',
-          textStyle: AppTextStyles.label.copyWith(color: AppColors.chuChinh),
+          text: AppStrings.resumeEducationTitle,
+          textStyle: AppTextStyles.label.copyWith(
+            color: Theme.of(context).appBarTheme.foregroundColor!,
+          ),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: AppConstants.spacingM),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingM,
+          ),
           child: Column(
             children: [
               TextCus(
                 text: personal.resume.education,
                 textStyle: AppTextStyles.label.copyWith(
-                  color: AppColors.chuPhu,
-                  fontSize: 14,
-                  height: 1.5,
+                  color: Theme.of(context).appBarTheme.foregroundColor!,
+                  fontSize: AppConstants.fontSizeSM,
+                  height: AppConstants.resumeTextLineHeight,
                   fontStyle: FontStyle.italic,
                 ),
               ),
               // TextCus(
               //   text: personal.resume.workExperience,
               //   textStyle: AppTextStyles.label.copyWith(
-              //     color: AppColors.chuPhu,
+              //     color: Theme.of(context).appBarTheme.foregroundColor!,
               //     fontSize: 14,
               //     height: 1.5,
               //     fontStyle: FontStyle.italic,
@@ -184,20 +208,24 @@ class ResumeScreen extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 12),
+        SizedBox(height: AppConstants.spacingM),
         TextCus(
-          text: 'Kinh nghiệm làm việc',
-          textStyle: AppTextStyles.label.copyWith(color: AppColors.chuChinh),
+          text: AppStrings.resumeWorkExperienceTitle,
+          textStyle: AppTextStyles.label.copyWith(
+            color: Theme.of(context).appBarTheme.foregroundColor!,
+          ),
         ),
-        SizedBox(height: 12),
+        SizedBox(height: AppConstants.spacingM),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingM,
+          ),
           child: TextCus(
             text: personal.resume.workExperience,
             textStyle: AppTextStyles.label.copyWith(
-              color: AppColors.chuPhu,
-              fontSize: 14,
-              height: 1.5,
+              color: Theme.of(context).appBarTheme.foregroundColor!,
+              fontSize: AppConstants.fontSizeSM,
+              height: AppConstants.resumeTextLineHeight,
               fontStyle: FontStyle.italic,
             ),
           ),

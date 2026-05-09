@@ -18,8 +18,8 @@ class Resume {
   static Resume getSampleResume() {
     return Resume(
       firstName: "Nguyễn",
-      lastName: "Dình Phúc",
-      jobTitle: "Flutter Developer",
+      lastName: "Đình Phúc",
+      jobTitle: "Thực tập sinh Flutter Developer",
       careerGoal:
           "Tôi mong muốn trở thành một Flutter Developer chuyên nghiệp, đóng góp vào các dự án sáng tạo và phát triển ứng dụng di động chất lượng cao, có ích cho cộng đồng.",
       workExperience: "Chưa có kinh nghiệm làm việc.",

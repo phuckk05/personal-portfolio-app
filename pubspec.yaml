@@ -58,6 +58,18 @@ dependencies:
 
   #thêm thư viện dùng sidebar
   easy_sidemenu: ^0.6.1
+
+  #thêm thưc viện cuộn đẹp
+  web_smooth_scroll: ^1.1.0
+
+  #thêm animation
+  animations: ^2.1.1
+
+  #thêm routes
+  go_router: ^16.1.0
+
+  #thêm thư viện mở link
+  url_launcher: ^6.3.0
  
 
 
