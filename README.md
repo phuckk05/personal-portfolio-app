@@ -18,6 +18,13 @@
 
 ---
 
+## Tính năng chưa làm
+
+- Sử dụng Lazy loading cho danh sách dài.
+- Hiệu ứng lướt nhẹ khi scroll (Scroll Reveal).
+
+*cần học thêm
+
 ## Tech Stack
 
 | Thành phần | Công nghệ |
