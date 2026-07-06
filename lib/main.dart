@@ -2,6 +2,7 @@ import 'dart:ui_web';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 import 'package:personal_portfolio/blocs/contact/contact_bloc.dart';
 import 'package:personal_portfolio/cubits/dark_mode_cubit.dart';
@@ -15,7 +16,8 @@ import 'package:personal_portfolio/utils/routes/app_router.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
   //Sử dụng PathUrlStrategy để loại bỏ dấu # trong URL
   setUrlStrategy(PathUrlStrategy());
   runApp(
@@ -63,9 +65,7 @@ class _PersonalPortfolioState extends State<PersonalPortfolio> {
           child: child!,
           breakpoints: [
             const Breakpoint(start: 0, end: 600, name: MOBILE),
-
             const Breakpoint(start: 601, end: 1024, name: TABLET),
-
             const Breakpoint(start: 1025, end: 1920, name: DESKTOP),
           ],
         );

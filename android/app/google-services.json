@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "995391776593",
+    "project_id": "wedprofile",
+    "storage_bucket": "wedprofile.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995391776593:android:26ec24beac67ddb62c5570",
+        "android_client_info": {
+          "package_name": "com.example.personal_portfolio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAommdlSIVeZpmoNhnpZrdk7zmUcbx4atg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

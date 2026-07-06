@@ -70,6 +70,10 @@ dependencies:
 
   #thêm thư viện mở link
   url_launcher: ^6.3.0
+
+  #thêm 
+  flutter_dotenv: ^6.0.0
+  firebase_core: ^4.7.0
  
 
 
@@ -102,3 +106,4 @@ flutter:
     - assets/images/
     - assets/fonts/
     - assets/svgs/
+    - .env

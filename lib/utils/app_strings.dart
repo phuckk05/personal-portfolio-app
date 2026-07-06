@@ -15,7 +15,7 @@ class AppStrings {
   // shared assets/labels
   static const String avatarTag = 'avatar';
   static const String avatarSemanticsLabel = 'Ảnh người dùng';
-  static const String avatarAssetPath = 'assets/images/avatar.jpg';
+  static const String avatarAssetPath = 'assets/images/gabil.png';
 
   // home screen
   static const String downloadCv = 'Download CV';

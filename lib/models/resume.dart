@@ -22,10 +22,11 @@ class Resume {
       jobTitle: "Thực tập sinh Flutter Developer",
       careerGoal:
           "Tôi mong muốn trở thành một Flutter Developer chuyên nghiệp, đóng góp vào các dự án sáng tạo và phát triển ứng dụng di động chất lượng cao, có ích cho cộng đồng.",
-      workExperience: "Chưa có kinh nghiệm làm việc.",
+      workExperience:
+          "Chưa có kinh nghiệm làm việc chính thức, nhưng đã hoàn thành một số dự án cá nhân và tham gia các khóa học về Flutter.",
       education:
           "Chuyên ngành Khoa học Máy tính.\n"
-          "Trường cao đẳng Cộng nghệ Thủ Đức.",
+          "",
     );
   }
 }

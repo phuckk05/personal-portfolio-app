@@ -42,7 +42,7 @@ class _InitAppScreenState extends State<InitAppScreen> {
     return Scaffold(
       body: BlocBuilder<LoadingCubit, bool>(
         builder: (context, isLoading) {
-          return Container(
+          return SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Align(
