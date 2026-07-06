@@ -25,7 +25,7 @@ class Personal {
   static final mockPersonal = Personal(
     name: "Nguyễn Đình Phúc",
     jobTitle: "Flutter Developer",
-    avatarUrl: "assets/images/avatar.jpg",
+    avatarUrl: "assets/images/gabil.png",
     resume: Resume.getSampleResume(),
     project: ProjectMockData.getSampleProjects(),
     progressBar: ProgressBar.list,
