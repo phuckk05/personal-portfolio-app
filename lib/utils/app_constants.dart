@@ -45,7 +45,7 @@ class AppConstants {
   static const double size100 = 100;
 
   // Durations
-  static const int initAppDelaySeconds = 5;
+  static const int initAppDelaySeconds = 3;
   static const int homeAnimationDelayMs = 900;
   static const int projectsScrollAnimationMs = 600;
 

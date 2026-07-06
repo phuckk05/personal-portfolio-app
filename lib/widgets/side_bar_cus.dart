@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -81,20 +79,16 @@ class _SideBarCusState extends State<SideBarCus> {
                     ).appBarTheme.foregroundColor!.withOpacity(0.1),
 
                     displayMode: state,
-                    selectedColor: Theme.of(
-                      context,
-                    ).appBarTheme.foregroundColor!,
+                    selectedColor: AppColors.chuChinh,
                     selectedTitleTextStyle: AppTextStyles.label.copyWith(
-                      color: Theme.of(context).appBarTheme.backgroundColor!,
+                      color: AppColors.nen,
                       fontSize: 24,
                     ),
                     unselectedTitleTextStyle: TextStyle(
                       color: AppColors.chuPhu,
                       fontSize: 16,
                     ),
-                    selectedIconColor: Theme.of(
-                      context,
-                    ).appBarTheme.backgroundColor!,
+                    selectedIconColor: AppColors.nen,
                     unselectedIconColor: AppColors.chuPhu,
                   ),
                   items: [

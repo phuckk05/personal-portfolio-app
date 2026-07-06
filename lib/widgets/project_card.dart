@@ -35,13 +35,9 @@ class ProjectCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).appBarTheme.backgroundColor,
+            color: AppColors.nen,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: Theme.of(
-                context,
-              ).appBarTheme.foregroundColor!.withOpacity(0.2),
-            ),
+            border: Border.all(color: AppColors.chuChinh.withOpacity(0.2)),
           ),
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -50,13 +46,13 @@ class ProjectCard extends StatelessWidget {
               children: [
                 _image(),
                 SizedBox(height: 12),
-                _title(context),
+                _title(),
                 SizedBox(height: 8),
-                _description(context),
+                _description(),
                 SizedBox(height: 12),
-                _technologies(context),
+                _technologies(),
                 SizedBox(height: 12),
-                _githubLink(context),
+                _githubLink(),
               ],
             ),
           ),
@@ -89,11 +85,11 @@ class ProjectCard extends StatelessWidget {
   }
 
   //Tên dự án
-  Widget _title(BuildContext context) {
+  Widget _title() {
     return Text(
       project.title,
       style: AppTextStyles.label.copyWith(
-        color: Theme.of(context).appBarTheme.foregroundColor,
+        color: AppColors.chuChinh,
         fontWeight: FontWeight.bold,
         fontSize: 20,
       ),
@@ -101,11 +97,11 @@ class ProjectCard extends StatelessWidget {
   }
 
   //mô tả
-  Widget _description(BuildContext context) {
+  Widget _description() {
     return Text(
       project.description,
       style: AppTextStyles.label.copyWith(
-        color: Theme.of(context).appBarTheme.foregroundColor!.withOpacity(0.8),
+        color: AppColors.chuPhu,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       ),
@@ -113,31 +109,21 @@ class ProjectCard extends StatelessWidget {
   }
 
   //các công nghệ sử dụng
-  Widget _technologies(BuildContext context) {
+  Widget _technologies() {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
       children: project.technologies
-          .map(
-            (tech) => Chip(
-              label: Text(tech),
-              backgroundColor: Theme.of(
-                context,
-              ).appBarTheme.foregroundColor!.withOpacity(0.1),
-              // color: Theme.of(context).appBarTheme.backgroundColor,
-            ),
-          )
+          .map((tech) => Chip(label: Text(tech)))
           .toList(),
     );
   }
 
   //guthub link
-  Widget _githubLink(BuildContext context) {
+  Widget _githubLink() {
     if (project.githubUrl == null) return SizedBox.shrink();
     return TextButton.icon(
-      style: TextButton.styleFrom(
-        foregroundColor: Theme.of(context).appBarTheme.foregroundColor,
-      ),
+      style: TextButton.styleFrom(foregroundColor: AppColors.chuChinh),
       onPressed: () {
         //Mở link github
         _openGithubLink(project.githubUrl!);
@@ -146,7 +132,7 @@ class ProjectCard extends StatelessWidget {
         AppStrings.svgGithub,
         width: 20,
         height: 20,
-        color: Theme.of(context).appBarTheme.foregroundColor,
+        color: AppColors.chuChinh,
       ),
       label: Text('Xem trên GitHub'),
     );
